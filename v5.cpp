@@ -1,36 +1,15 @@
-#include <iostream>
-#include <cctype>
-#include <cstring>
-#include <cstdlib>
-#include <bits/stdc++.h>
-
+#include<iostream>
+#include<cstring>
 using namespace std;
-
+char s[101];
+int i,j;
 int main()
 {
-    char s[101], t[101];
-    cin.getline(s, 101);
-    char *p;
-    int i, j, vir;
-    p=strtok(s, " ");
-    while(p!=NULL)
+    cin>>s;
+    for(i=0;i<strlen(s);i++)
     {
-        vir = 0;
-        for (i = 0; i < strlen(p) && vir==0; i++)
-        {
-            if (p[i] == '.')
-            {
-                vir=1;
-                int x=i;
-                for (j = 1; j <= strlen(p) - x; j++)
-                {
-                    strcpy(t, s + i + 1);
-                    strcpy(s + i, t);
-                    i--;
-                }
-            }
-        }
-        p=strtok(NULL, " ");
+        for(j=0;j<=i;j++)
+            cout<<s[j];
+        cout<<s+strlen(s)-i-1<<' ';
     }
-    cout << s;
 }

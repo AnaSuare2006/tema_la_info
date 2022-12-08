@@ -1,24 +1,29 @@
 #include <iostream>
-#include <cctype>
 #include <cstring>
 #include <cstdlib>
-#include <bits/stdc++.h>
+#include <cctype>
 
 using namespace std;
 
 int main()
 {
-    char s[100],t[100];
-    cin.getline(s, 100);
-    int i;
-    for (i = 1; i < strlen(s)-1; i++)
+    char s[100];
+    cin.getline(s,100);
+    int i=0,mx=0,k=0;
+    char *p=strtok(s," ");
+    while(p)
     {
-        if ((s[i] == ' ') && (isalpha(s[i + 1]) == 0 || isalpha(s[i - 1]) == 0))
+        if(strlen(p)>mx)
         {
-            strcpy(t, s + i + 1);
-            strcpy(s + i, t);
-            i--;
+            k=1;
+            mx=strlen(p);
         }
+        else
+        {
+            if(strlen(p)==mx)
+                k++;
+        }
+        p=strtok(NULL," ");
     }
-    cout<<s;
+    cout<<mx<<" "<<k;
 }
