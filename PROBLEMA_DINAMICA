@@ -1,0 +1,116 @@
+#include <iostream>
+// #include <windows.h>
+// #include <conio.h>
+using namespace std;
+
+int main()
+{
+    struct nod
+    {
+        int info;
+        nod *urm;
+    };
+    nod *prim, *ultim, *p, *q, *r;
+    int i, este_vida = 1, val, nrc, gasit, op, nr = 1;
+    ultim = prim = NULL;
+    while (op != 10)
+    {
+        // system("cls");
+        cout << "introduceti o operatie" << endl;
+        cout << "1-adaugare" << endl;
+        cout << "2-afisare" << endl;
+        cout << "3-cautare in lista" << endl;
+        cout << "4-succesor" << endl;
+        cout << "5-predecesor" << endl;
+        cout << "6-stergere prim" << endl;
+        cout << "7-stergere ultim" << endl;
+        cout << "10-exit" << endl;
+        cout << "introduceti o operatie:" << endl;
+        cin >> op;
+        if (op == 1)
+        {
+            cout << "introduceti o valoare:" << endl;
+            cin >> val;
+            if (este_vida)
+            {
+                prim = new nod;
+                prim->info = val;
+                prim->urm;
+                ultim = prim;
+                este_vida = 0;
+            }
+            else
+            {
+                p = new nod;
+                p->info = val;
+                p->urm = NULL;
+                ultim->urm = p;
+                ultim = p;
+            }
+        }
+        if (op == 2)
+        {
+            for (p = prim; p != NULL; p = p->urm)
+            {
+                cout << p->info << " ";
+            }
+            // getche();
+        }
+        if (op == 3)
+        {
+            cout << "introduceti o valoare:" << endl;
+            cin >> nrc;
+            p = prim;
+            q = p;
+            while (p->urm != NULL && p->info != nrc)
+            {
+                p = p->urm;
+                q = p;
+                nr++;
+            }
+            if (p == NULL)
+                cout << "nu s-a gasit";
+            else
+                cout << "s-a gasit in noodul " << nr;
+            // getche();
+        }
+        if (op == 8)
+        {
+            cout << "introduceti o adresa(numar natural):" << endl;
+            cin >> nrc;
+            p = prim;
+            nr=1;
+            while (p->urm != NULL && nr + 1 != nrc)
+            {
+                p = p->urm;
+                nr++;
+            }
+            if (p == NULL)
+                cout << "nu s-a gasit adresa introdusa";
+            else
+            {
+                p->urm = (p->urm)->urm;
+                delete p->urm;
+            }
+        }
+        if (op == 9)
+        {
+            cout << "introduceti o adresa(numar natural):" << endl;
+            cin >> nrc;
+            p = prim;
+            nr=1;
+            while (p->urm != NULL && nr != nrc)
+            {
+                p = p->urm;
+                nr++;
+            }
+            if (p->urm==NULL)
+                cout << "elementul nu are succesor"<<endl;
+            else
+            {
+                p->urm = (p->urm)->urm;
+                delete p->urm;
+            }
+        }
+    }
+}
